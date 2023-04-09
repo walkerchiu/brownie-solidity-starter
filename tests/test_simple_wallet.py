@@ -39,3 +39,18 @@ def test_multiple_deposits():
     # Verify that the contract's balance should be equal to the total deposited amount
     total_deposit = deposit_amount1 + deposit_amount2
     assert simple_deposit.weiBalance() == total_deposit
+
+
+def test_deposit_with_zero_value_error():
+    # Deploy the contract
+    deployer = accounts[0]
+    simple_deposit = SimpleWallet.deploy({"from": deployer})
+
+    # Attempt to deposit with zero value (should raise an exception)
+    try:
+        simple_deposit.deposit({"from": deployer, "value": 0})
+    except Exception as e:
+        assert "You must send some ether" in str(e)
+
+    # Verify that the contract's balance remains unchanged
+    assert simple_deposit.weiBalance() == 0
