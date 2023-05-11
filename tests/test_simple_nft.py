@@ -10,6 +10,11 @@ def simple_nft():
     return SimpleNFT.deploy({"from": deployer})
 
 
+def test_deploy_simple_nft(simple_nft):
+    # Check if contract was deployed successfully
+    assert simple_nft is not None
+
+
 # Test the createNFT function
 def test_create_nft(simple_nft):
     # Ensure that the contract owner is the deploying account
