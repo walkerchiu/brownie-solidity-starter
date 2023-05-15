@@ -39,7 +39,7 @@ def deploy_simple_nft(deployer):
     """
     try:
         # Deploy the contract
-        simple_nft = SimpleNFT.deploy({"from": deployer})
+        simple_nft = SimpleNFT.deploy("MyNFT", "NFT", {"from": deployer})
         return simple_nft
     except Exception as e:
         print(f"Error deploying contract: {e}")

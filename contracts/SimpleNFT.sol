@@ -38,9 +38,24 @@ contract SimpleNFT is IERC721 {
     mapping(uint256 => address) private _tokenIdToApproved;
     mapping(address => uint256) private _ownershipTokenCount;
 
-    constructor() {
+    string private _name;
+    string private _symbol;
+
+    constructor(string memory name_, string memory symbol_) {
         owner = msg.sender;
         _tokenIdCounter = 0;
+        _name = name_;
+        _symbol = symbol_;
+    }
+
+    // Get the name of the NFT
+    function name() external view returns (string memory) {
+        return _name;
+    }
+
+    // Get the symbol of the NFT
+    function symbol() external view returns (string memory) {
+        return _symbol;
     }
 
     // Query the number of NFTs owned by an account

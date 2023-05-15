@@ -7,7 +7,7 @@ from brownie import accounts, SimpleNFT
 @pytest.fixture(scope="function")
 def simple_nft():
     deployer = accounts[0]
-    return SimpleNFT.deploy({"from": deployer})
+    return SimpleNFT.deploy("MyNFT", "NFT", {"from": deployer})
 
 
 def test_deploy_simple_nft(simple_nft):
